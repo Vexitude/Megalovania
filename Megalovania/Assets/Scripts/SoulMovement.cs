@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class SoulMovement : MonoBehaviour
 {
     /// <summary>
     /// VEX
-    /// Last Updated: 1/5/2026
+    /// Last Updated: 1/8/2026
     /// Animates the Red Soul for intro
     /// </summary>
     public Vector2 targetPosition;
     public float speed = 0.1f;
+    public event Action ScriptRunComplete;
 
     private bool flicker = false;
     private SpriteRenderer spriteRenderer;
@@ -39,6 +41,7 @@ public class SoulMovement : MonoBehaviour
             if ((Vector2)transform.position == targetPosition)
             {
                 this.spriteRenderer.enabled = false;
+                FinishTask();
             }
         }
     }
@@ -55,6 +58,11 @@ public class SoulMovement : MonoBehaviour
         this.spriteRenderer.enabled = true;
         yield return new WaitForSeconds(flickerDuration);
         flicker = true;
+    }
+
+    public void FinishTask()
+    {
+        ScriptRunComplete?.Invoke();
     }
 
 }
