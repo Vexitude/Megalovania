@@ -8,12 +8,13 @@ public class SoulMovement : MonoBehaviour
 {
     /// <summary>
     /// VEX
-    /// Last Updated: 1/8/2026
-    /// Animates the Red Soul for intro
+    /// Last Updated: 1/14/2026
+    /// Animates the Red Soul for intro and turns on Canvas Battle
     /// </summary>
     public Vector2 targetPosition;
     public float speed = 0.1f;
     public event Action ScriptRunComplete;
+    public GameObject canvasObject;
 
     private bool flicker = false;
     private SpriteRenderer spriteRenderer;
@@ -62,7 +63,7 @@ public class SoulMovement : MonoBehaviour
 
     public void FinishTask()
     {
-        ScriptRunComplete?.Invoke();
+        canvasObject.SetActive(true);
     }
 
 }

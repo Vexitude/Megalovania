@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 39812879}
   - component: {fileID: 39812878}
   - component: {fileID: 39812877}
-  - component: {fileID: 39812881}
   m_Layer: 5
   m_Name: FULL BATTLE
   m_TagString: Untagged
@@ -227,20 +226,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.4837, y: -0.1813}
   m_SizeDelta: {x: 20.0515, y: 17.3164}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &39812881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39812876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e3b5187b2a947459f13a9a827db193, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soulMovement: {fileID: 1809409891}
-  canvasObject: {fileID: 39812876}
 --- !u!1 &189793579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,6 +1955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPosition: {x: -15.61, y: -8.89}
   speed: 12
+  canvasObject: {fileID: 39812876}
   flickerDuration: 0.1
 --- !u!1 &1827764033
 GameObject:
