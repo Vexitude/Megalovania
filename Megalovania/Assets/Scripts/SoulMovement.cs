@@ -9,17 +9,18 @@ public class SoulMovement : MonoBehaviour
     /// <summary>
     /// VEX
     /// Last Updated: 1/14/2026
-    /// Animates the Red Soul for intro and turns on Canvas Battle
+    /// Animates the Red Soul for intro and fades in Canvas Battle Group
     /// </summary>
     public Vector2 targetPosition;
     public float speed = 0.1f;
-    public event Action ScriptRunComplete;
-    public GameObject canvasObject;
+    public CanvasGroup canvasObject;
+    public float flickerDuration = 0.1f;
+    public float fadeDuration = 1.0f;
 
     private bool flicker = false;
     private SpriteRenderer spriteRenderer;
-    public float flickerDuration = 0.1f; 
-
+    private FadeTalk scriptFadeTalk;
+    
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -42,7 +43,8 @@ public class SoulMovement : MonoBehaviour
             if ((Vector2)transform.position == targetPosition)
             {
                 this.spriteRenderer.enabled = false;
-                FinishTask();
+                //scriptFadeTalk.StartFadeIn(1.0f);
+                StartCoroutine(FadeCanvas(canvasObject, canvasObject.alpha, 1f, fadeDuration));
             }
         }
     }
@@ -63,7 +65,23 @@ public class SoulMovement : MonoBehaviour
 
     public void FinishTask()
     {
-        canvasObject.SetActive(true);
+        //canvasObject.SetActive(true);
     }
 
+    IEnumerator FadeCanvas(CanvasGroup cg, float startAlpha, float endAlpha, float duration)
+    {
+
+        float startTime = Time.time;
+        float timePassed = 0f;
+
+        while (timePassed < duration)
+        {
+            timePassed = Time.time - startTime;
+            cg.alpha = Mathf.Lerp(startAlpha, endAlpha, timePassed / duration);
+            yield return null;
+        }
+
+        cg.alpha = endAlpha;
+    }
+    
 }
