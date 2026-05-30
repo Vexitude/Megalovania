@@ -11,11 +11,11 @@ using System;
 
 public class FadeTalk : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRendererBoss;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRendererBoss = GetComponent<SpriteRenderer>();
 
     }
 
@@ -26,7 +26,7 @@ public class FadeTalk : MonoBehaviour
 
     IEnumerator SpriteFadeIn(float duration)
     {
-        float startAlpha = spriteRenderer.color.a;
+        float startAlpha = spriteRendererBoss.color.a;
         float targetAlpha = 1.0f; 
         float startTime = Time.time;
 
@@ -35,16 +35,16 @@ public class FadeTalk : MonoBehaviour
             float t = (Time.time - startTime) / duration;
             float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, t);
 
-            Color currentColor = spriteRenderer.color;
+            Color currentColor = spriteRendererBoss.color;
             currentColor.a = newAlpha;
-            spriteRenderer.color = currentColor;
+            spriteRendererBoss.color = currentColor;
 
             yield return null; 
         }
 
-        Color finalColor = spriteRenderer.color;
+        Color finalColor = spriteRendererBoss.color;
         finalColor.a = targetAlpha;
-        spriteRenderer.color = finalColor;
+        spriteRendererBoss.color = finalColor;
     }
 
     public void StartFadeIn(float duration)

@@ -19,8 +19,13 @@ public class SoulMovement : MonoBehaviour
 
     private bool flicker = false;
     private SpriteRenderer spriteRenderer;
+    public SpriteRenderer newSoul;
     private FadeTalk scriptFadeTalk;
-    
+
+    private void Awake()
+    {
+        newSoul.enabled = false;
+    }
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -78,6 +83,7 @@ public class SoulMovement : MonoBehaviour
         {
             timePassed = Time.time - startTime;
             cg.alpha = Mathf.Lerp(startAlpha, endAlpha, timePassed / duration);
+            newSoul.enabled = true;
             yield return null;
         }
 
